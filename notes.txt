@@ -1,0 +1,12 @@
+Google's T5 model generates questions using context paragraph and answer to generate question.
+
+We can use "context-only-question-generator" model from hugging face which generates question based on only context.
+
+For generating answers using context and question, we can ideally use any DL model which was trained on SQUAD-2.
+
+Here are few models like:
+1. deepset/roberta-base-squad2
+2. distilbert-base-cased-distilled-squad
+3. bert-large-uncased-whole-word-masking-finetuned-squad
+4. deepset/bert-large-uncased-whole-word-masking-squad2
+etc.
