@@ -10,3 +10,26 @@ Here are few models like:
 3. bert-large-uncased-whole-word-masking-finetuned-squad
 4. deepset/bert-large-uncased-whole-word-masking-squad2
 etc.
+
+
+How it works:
+
+1. It takes context and number of questions as parameter
+2. It tokenizes paragraph into sentences and removing spaces from it if length is more then 20(strip method). Join these sentences again to form paragraph.
+3. Calls get_keywords method by providing:
+	1. spacy nlp obj (pipeline: [('tok2vec', 'tagger', 'parser', 'attribute_ruler', 'lemmatizer', 'ner')]
+	2. updated_paragraph from step-2
+	3. max questions
+	4. Sent2Vec object
+	5. Frequescy distribution of nltk.corpus.brown
+	6. Obj of Normalized_Levenshtein class from similarity package
+	7. Length of sentences
+
+3.1. Extract Keywords (a.k.a ProNoun and Nouns) from paragraph. Build the Multipartite graph and rank candidates using random walk,
+    #    alpha controls the weight adjustment mechanism, see TopicRank for
+    #    threshold/method parameters.
+	ANSWER: ['fomc', 'fed funds rate', 'month', 'treasury', 'holdings', 'basis points', 'balance sheet reduction', 'plan', 'hike', 'securities']
+
+3.2. Sort keywords using Fdist (which was built on nltk.corpus.brown's words)
+
+3.3.   
